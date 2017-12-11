@@ -1,5 +1,4 @@
-﻿open System
-open System.Collections.Specialized
+open System
 
 let mutable gameBoard = array2D[
     ['_';'_';'_';'_';'_';'_';'_'];
@@ -88,22 +87,13 @@ let play_game() =
 let check_row_won() =
     let mutable row = 5
     while row > 0 do 
-        if gameBoard.[row,0].Equals(gameBoard.[row,1]) && gameBoard.[row,0].Equals(gameBoard.[row,2]) && gameBoard.[row,0].Equals(gameBoard.[row,3]) && gameBoard.[row,0].Equals('O') then
+        if gameBoard.[row,0].Equals(gameBoard.[row,1]) && gameBoard.[row,0].Equals(gameBoard.[row,2]) && gameBoard.[row,0].Equals(gameBoard.[row,3]) && gameBoard.[row,0].Equals(piece) then
             pass <- 1
-        elif gameBoard.[row,1].Equals(gameBoard.[row,2]) && gameBoard.[row,1].Equals(gameBoard.[row,3]) && gameBoard.[row,1].Equals(gameBoard.[row,4]) && gameBoard.[row,1].Equals('O') then
+        elif gameBoard.[row,1].Equals(gameBoard.[row,2]) && gameBoard.[row,1].Equals(gameBoard.[row,3]) && gameBoard.[row,1].Equals(gameBoard.[row,4]) && gameBoard.[row,1].Equals(piece) then
             pass <- 1
-        elif gameBoard.[row,2].Equals(gameBoard.[row,3]) && gameBoard.[row,2].Equals(gameBoard.[row,4]) && gameBoard.[row,2].Equals(gameBoard.[row,5]) && gameBoard.[row,2].Equals('O') then
+        elif gameBoard.[row,2].Equals(gameBoard.[row,3]) && gameBoard.[row,2].Equals(gameBoard.[row,4]) && gameBoard.[row,2].Equals(gameBoard.[row,5]) && gameBoard.[row,2].Equals(piece) then
             pass <- 1
-        elif gameBoard.[row,3].Equals(gameBoard.[row,4]) && gameBoard.[row,3].Equals(gameBoard.[row,5]) && gameBoard.[row,3].Equals(gameBoard.[row,6]) && gameBoard.[row,3].Equals('O') then
-            pass <- 1
-
-        if gameBoard.[row,0].Equals(gameBoard.[row,1]) && gameBoard.[row,0].Equals(gameBoard.[row,2]) && gameBoard.[row,0].Equals(gameBoard.[row,3]) && gameBoard.[row,0].Equals('X') then
-            pass <- 1
-        elif gameBoard.[row,1].Equals(gameBoard.[row,2]) && gameBoard.[row,1].Equals(gameBoard.[row,3]) && gameBoard.[row,1].Equals(gameBoard.[row,4]) && gameBoard.[row,1].Equals('X') then
-            pass <- 1
-        elif gameBoard.[row,2].Equals(gameBoard.[row,3]) && gameBoard.[row,2].Equals(gameBoard.[row,4]) && gameBoard.[row,2].Equals(gameBoard.[row,5]) && gameBoard.[row,2].Equals('X') then
-            pass <- 1
-        elif gameBoard.[row,3].Equals(gameBoard.[row,4]) && gameBoard.[row,3].Equals(gameBoard.[row,5]) && gameBoard.[row,3].Equals(gameBoard.[row,6]) && gameBoard.[row,3].Equals('X') then
+        elif gameBoard.[row,3].Equals(gameBoard.[row,4]) && gameBoard.[row,3].Equals(gameBoard.[row,5]) && gameBoard.[row,3].Equals(gameBoard.[row,6]) && gameBoard.[row,3].Equals(piece) then
             pass <- 1
 
         row <- row - 1
@@ -111,18 +101,11 @@ let check_row_won() =
 let check_column_won() =
     let mutable col = 0
     while col < 7 do
-        if gameBoard.[0,col].Equals(gameBoard.[1,col]) && gameBoard.[0,col].Equals(gameBoard.[2,col]) && gameBoard.[0,col].Equals(gameBoard.[3,col]) && gameBoard.[0,col].Equals('O') then
+        if gameBoard.[0,col].Equals(gameBoard.[1,col]) && gameBoard.[0,col].Equals(gameBoard.[2,col]) && gameBoard.[0,col].Equals(gameBoard.[3,col]) && gameBoard.[0,col].Equals(piece) then
             pass <- 1
-        elif gameBoard.[1,col].Equals(gameBoard.[2,col]) && gameBoard.[1,col].Equals(gameBoard.[3,col]) && gameBoard.[1,col].Equals(gameBoard.[4,col]) && gameBoard.[1,col].Equals('O') then
+        elif gameBoard.[1,col].Equals(gameBoard.[2,col]) && gameBoard.[1,col].Equals(gameBoard.[3,col]) && gameBoard.[1,col].Equals(gameBoard.[4,col]) && gameBoard.[1,col].Equals(piece) then
             pass <- 1
-        elif gameBoard.[2,col].Equals(gameBoard.[3,col]) && gameBoard.[2,col].Equals(gameBoard.[4,col]) && gameBoard.[2,col].Equals(gameBoard.[5,col]) && gameBoard.[2,col].Equals('O') then
-            pass <- 1
-        
-        if gameBoard.[0,col].Equals(gameBoard.[1,col]) && gameBoard.[0,col].Equals(gameBoard.[2,col]) && gameBoard.[0,col].Equals(gameBoard.[3,col]) && gameBoard.[0,col].Equals('X') then
-            pass <- 1
-        elif gameBoard.[1,col].Equals(gameBoard.[2,col]) && gameBoard.[1,col].Equals(gameBoard.[3,col]) && gameBoard.[1,col].Equals(gameBoard.[4,col]) && gameBoard.[1,col].Equals('X') then
-            pass <- 1
-        elif gameBoard.[2,col].Equals(gameBoard.[3,col]) && gameBoard.[2,col].Equals(gameBoard.[4,col]) && gameBoard.[2,col].Equals(gameBoard.[5,col]) && gameBoard.[2,col].Equals('X') then
+        elif gameBoard.[2,col].Equals(gameBoard.[3,col]) && gameBoard.[2,col].Equals(gameBoard.[4,col]) && gameBoard.[2,col].Equals(gameBoard.[5,col]) && gameBoard.[2,col].Equals(piece) then
             pass <- 1
         col <- col + 1
     
@@ -130,32 +113,20 @@ let check_diag_won() =
     let mutable col = 0
     let mutable cl2 = 6
     while col < 4 do
-        if gameBoard.[3,col].Equals(gameBoard.[2,col+1]) && gameBoard.[3,col].Equals(gameBoard.[1,col+2]) && gameBoard.[3,col].Equals(gameBoard.[0,col+3]) && gameBoard.[3,col].Equals('O') then
+        if gameBoard.[3,col].Equals(gameBoard.[2,col+1]) && gameBoard.[3,col].Equals(gameBoard.[1,col+2]) && gameBoard.[3,col].Equals(gameBoard.[0,col+3]) && gameBoard.[3,col].Equals(piece) then
             pass <- 1
-        elif gameBoard.[3,col].Equals(gameBoard.[2,col+1]) && gameBoard.[3,col].Equals(gameBoard.[1,col+2]) && gameBoard.[3,col].Equals(gameBoard.[0,col+3]) && gameBoard.[3,col].Equals('X') then
+        if gameBoard.[4,col].Equals(gameBoard.[3,col+1]) && gameBoard.[4,col].Equals(gameBoard.[2,col+2]) && gameBoard.[4,col].Equals(gameBoard.[1,col+3]) && gameBoard.[4,col].Equals(piece) then
             pass <- 1
-        if gameBoard.[4,col].Equals(gameBoard.[3,col+1]) && gameBoard.[4,col].Equals(gameBoard.[2,col+2]) && gameBoard.[4,col].Equals(gameBoard.[1,col+3]) && gameBoard.[4,col].Equals('O') then
-            pass <- 1
-        elif gameBoard.[4,col].Equals(gameBoard.[3,col+1]) && gameBoard.[4,col].Equals(gameBoard.[2,col+2]) && gameBoard.[4,col].Equals(gameBoard.[1,col+3]) && gameBoard.[4,col].Equals('X') then
-            pass <- 1
-        if gameBoard.[5,col].Equals(gameBoard.[4,col+1]) && gameBoard.[5,col].Equals(gameBoard.[3,col+2]) && gameBoard.[5,col].Equals(gameBoard.[2,col+3]) && gameBoard.[5,col].Equals('O') then
-            pass <- 1
-        elif gameBoard.[5,col].Equals(gameBoard.[4,col+1]) && gameBoard.[5,col].Equals(gameBoard.[3,col+2]) && gameBoard.[5,col].Equals(gameBoard.[2,col+3]) && gameBoard.[5,col].Equals('X') then
+        if gameBoard.[5,col].Equals(gameBoard.[4,col+1]) && gameBoard.[5,col].Equals(gameBoard.[3,col+2]) && gameBoard.[5,col].Equals(gameBoard.[2,col+3]) && gameBoard.[5,col].Equals(piece) then
             pass <- 1
         col <- col + 1
     
     while cl2 > 2 do
-        if gameBoard.[3,cl2].Equals(gameBoard.[2,cl2-1]) && gameBoard.[3,cl2].Equals(gameBoard.[1,cl2-2]) && gameBoard.[3,cl2].Equals(gameBoard.[0,cl2-3]) && gameBoard.[3,cl2].Equals('O') then
+        if gameBoard.[3,cl2].Equals(gameBoard.[2,cl2-1]) && gameBoard.[3,cl2].Equals(gameBoard.[1,cl2-2]) && gameBoard.[3,cl2].Equals(gameBoard.[0,cl2-3]) && gameBoard.[3,cl2].Equals(piece) then
             pass <- 1
-        elif gameBoard.[3,cl2].Equals(gameBoard.[2,cl2-1]) && gameBoard.[3,cl2].Equals(gameBoard.[1,cl2-2]) && gameBoard.[3,cl2].Equals(gameBoard.[0,cl2-3]) && gameBoard.[3,cl2].Equals('X') then
+        if gameBoard.[4,cl2].Equals(gameBoard.[3,cl2-1]) && gameBoard.[4,cl2].Equals(gameBoard.[2,cl2-2]) && gameBoard.[4,cl2].Equals(gameBoard.[1,cl2-3]) && gameBoard.[4,cl2].Equals(piece) then
             pass <- 1
-        if gameBoard.[4,cl2].Equals(gameBoard.[3,cl2-1]) && gameBoard.[4,cl2].Equals(gameBoard.[2,cl2-2]) && gameBoard.[4,cl2].Equals(gameBoard.[1,cl2-3]) && gameBoard.[4,cl2].Equals('O') then
-            pass <- 1
-        elif gameBoard.[4,cl2].Equals(gameBoard.[3,cl2-1]) && gameBoard.[4,cl2].Equals(gameBoard.[2,cl2-2]) && gameBoard.[4,cl2].Equals(gameBoard.[1,cl2-3]) && gameBoard.[4,cl2].Equals('X') then
-            pass <- 1
-        if gameBoard.[5,cl2].Equals(gameBoard.[4,cl2-1]) && gameBoard.[5,cl2].Equals(gameBoard.[3,cl2-2]) && gameBoard.[5,cl2].Equals(gameBoard.[2,cl2-3]) && gameBoard.[5,cl2].Equals('O') then
-            pass <- 1
-        elif gameBoard.[5,cl2].Equals(gameBoard.[4,cl2-1]) && gameBoard.[5,cl2].Equals(gameBoard.[3,cl2-2]) && gameBoard.[5,cl2].Equals(gameBoard.[2,cl2-3]) && gameBoard.[5,cl2].Equals('X') then
+        if gameBoard.[5,cl2].Equals(gameBoard.[4,cl2-1]) && gameBoard.[5,cl2].Equals(gameBoard.[3,cl2-2]) && gameBoard.[5,cl2].Equals(gameBoard.[2,cl2-3]) && gameBoard.[5,cl2].Equals(piece) then
             pass <- 1
         cl2 <- cl2 - 1
 
@@ -201,7 +172,7 @@ let main =
             Console.ForegroundColor <- ConsoleColor.Green
             printfn "\n%c is the winner!\nCongratulations!!!" piece
             win <- 1
-        if tie >=42 then
+        if tie >=41 then
             Console.ForegroundColor <- ConsoleColor.Green
             printfn "\nIT IS A TIE WTF!!!!"
         if (turn.Equals(0)) then
